@@ -40,7 +40,7 @@ const MyReg = () => {
 
   return (
     <div>
-      <h1 style={{ color: 'red', textAlign: 'center' }}>REGISTER FORM</h1>
+      <h1 style={{ color: 'red', textAlign: 'center' }}>REGISTRATION FORM</h1>
       <form onSubmit={handleSubmit} style={{ textAlign: 'center' }}>
         <table>
           <tbody>
