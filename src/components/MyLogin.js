@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
+import HomeNav from './HomeNav';
 
 const MyLogin = () => {
 
@@ -26,19 +27,19 @@ const MyLogin = () => {
       const response = await axios.post('http://localhost:2022/login', formData);
       console.log(response.data.status);
       
-      
       if(response.data.status === 'success') {
         localStorage.setItem("token", "annapavan");
         alert('Login successful');
         if(response.data.role == 'student'){
           console.log(response.data.role);
-          navigate('/studentpage');
+          navigate('/student');
         }else if(response.data.role == 'entrepreneur'){
+          console.log(response.data.id);
           console.log(response.data.role);
-          navigate('/entrepreneurpage')
+          navigate('/entrepreneur')
         }else{
           console.log(response.data.role);
-          navigate('/investorpage');
+          navigate('/investor');
         }
       } else {
         alert('Login failed');
@@ -50,7 +51,6 @@ const MyLogin = () => {
   };
 
   useEffect(() => {
-    
     if (location.pathname === '/') 
     {
       localStorage.removeItem("token");
@@ -58,45 +58,47 @@ const MyLogin = () => {
   }, []);
 
   return (
-    <div>
-      <h1 style={{ color: 'blue', textAlign: 'center' }}>LOGIN FORM</h1>
-      <form onSubmit={handleSubmit} style={{ textAlign: 'center' }}>
-        <table>
+    <>
+    <HomeNav/>
+    <div className="login-container">
+      <h1 className="login-heading">LOGIN FORM</h1>
+      <form onSubmit={handleSubmit} className="login-form">
+        <table className="login-table">
           <tbody>
             <tr>
               <td>User Id</td>
               <td>
-                <input type="text" name="id" onChange={handleChange} />
+                <input type="text" name="id" onChange={handleChange} className="login-input" />
               </td>
             </tr>
             <tr>
               <td>UserName</td>
               <td>
-                <input type="text" name="name" onChange={handleChange} />
+                <input type="text" name="name" onChange={handleChange} className="login-input" />
               </td>
             </tr>
             <tr>
               <td>Password</td>
               <td>
-                <input type="password" name="pwd" onChange={handleChange} />
+                <input type="password" name="pwd" onChange={handleChange} className="login-input" />
               </td>
             </tr>
             <tr>
               <td>Role</td>
               <td>
-                <input type="text" name="role" onChange={handleChange} />
+                <input type="text" name="role" onChange={handleChange} className="login-input" placeholder='student/entrepreneur/investor'/>
               </td>
             </tr>
             <tr>
-              <td>
-                <input type="submit" value="Login" />
+              <td colSpan="2">
+                <input type="submit" value="Login" className="login-submit-btn" />
               </td>
             </tr>
           </tbody>
         </table>
       </form>
-      <a href="/myreg">if u not registered</a>
     </div>
+    </>
   );
 };
 

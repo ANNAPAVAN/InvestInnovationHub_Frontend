@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import MyNav from './MyNav';
+import ResultForm from './ResultForm';
+import InvestorNav from '../navPages/InvestorNav';
 
 const Investor = () => {
   const [investData, setInvestData] = useState({
@@ -14,14 +15,15 @@ const Investor = () => {
   }, []);
 
   return (
-    <div>
-      <MyNav />
-      <h1>INVESTOR PAGE</h1>
+    <>
+    <InvestorNav/>
+    <div className="investor-container">
+      <h1 className="investor-heading">INVESTOR PAGE</h1>
 
       {investData.role === 'investor' && (
-        <div>
-          <h2>Investments:</h2>
-          <table border="1">
+        <div className="investments-container">
+          <h2 className="investments-heading">Investments:</h2>
+          <table className="investments-table" border="1">
             <thead>
               <tr>
                 <th>Title</th>
@@ -36,7 +38,7 @@ const Investor = () => {
             </thead>
             <tbody>
               {investData.posts.map((investment, index) => (
-                <tr key={index}>
+                <tr key={index} className="investment-row">
                   <td>{investment.title}</td>
                   <td>{investment.pid}</td>
                   <td>{investment.eid}</td>
@@ -49,9 +51,11 @@ const Investor = () => {
               ))}
             </tbody>
           </table>
+          <ResultForm/>
         </div>
       )}
     </div>
+    </>
   );
 };
 

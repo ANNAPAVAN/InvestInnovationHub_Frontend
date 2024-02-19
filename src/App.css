@@ -1,38 +1,494 @@
-.App {
+.lout{
+  text-decoration: none;
+}
+
+/* nav */
+.navbar {
+  position: fixed; 
+  top: 0; 
+  width: 100%; 
+  background-color: hwb(240 87% 4%); 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+}
+
+.nav-link {
+  text-decoration: none; 
+  padding: 10px 20px; 
+  margin: 0 10px; 
+}
+
+/* home */
+.home-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Ensure the container covers the full viewport height */
+  /* background-color: #cacac3; */
+}
+
+.home-container h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.home-container p {
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+
+/* login */
+.login-container {
+  max-width: 400px;
+  margin: 0 auto; 
+  margin-top: 50px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+
+.login-heading {
+  color: #ff0000;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.login-form {
+  text-align: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.login-table {
+  margin: 0 auto;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.login-table td {
+  padding: 10px;
+}
+
+.login-input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.login-submit-btn {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.register-link {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.register-link:hover {
+  text-decoration: underline;
+}
+
+
+
+
+
+/* register */
+
+.registration-container {
+  max-width: 400px;
+  margin: 0 auto;
+  margin-top: 50px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.registration-heading {
+  color: red;
+  text-align: center;
+}
+
+.registration-form {
+  text-align: center;
+}
+
+.registration-table {
+  margin: 0 auto;
+}
+
+.registration-table td {
+  padding: 10px;
+}
+
+.registration-input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.registration-submit-btn {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+
+
+
+/* student */
+
+.student-container {
+  margin-top: 50px;
+  
+}
+
+.student-heading {
+  text-align: center;
+}
+
+.posts-container {
+  margin-top: 20px;
+}
+
+.posts-heading {
+  text-align: center;
+}
+
+.posts-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.posts-table th,
+.posts-table td {
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+
+
+
+/* investor */
+
+.investor-container {
+  margin-top: 50px;
+}
+
+.investor-heading {
+  text-align: center;
+}
+
+.investments-container {
+  margin-top: 20px;
+}
+
+.investments-heading {
+  text-align: center;
+}
+
+.investments-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.investments-table th,
+.investments-table td {
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.investment-row:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.investment-row:hover {
+  background-color: #e0e0e0;
+}
+
+
+/* result */
+
+.result-container {
+  margin: 20px auto;
+  max-width: 800px;
+}
+
+.result-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.result-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.result-th,
+.result-td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.result-tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.result-th {
+  background-color: #333;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+
+/* student send */
+.std-send-container {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.std-send-container h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
 }
+
+.std-send-form div {
+  margin-bottom: 15px;
+}
+
+.std-send-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.std-send-input,
+.std-send-textarea {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.std-send-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.std-send-button:hover {
+  background-color: #0056b3;
+}
+
+
+/* entrepreneur post */
+
+.ent-post-container {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.ent-post-heading {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.ent-post-form td {
+  padding: 8px;
+}
+
+.ent-input-field {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.ent-textarea-field {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.ent-submit-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.ent-submit-button:hover {
+  background-color: #0056b3;
+}
+
+/* ent-send */
+
+.ent-send-container {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.ent-send-heading {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.ent-send-form td {
+  padding: 8px;
+}
+
+.ent-input-field {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.ent-textarea-field {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.ent-submit-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.ent-submit-button:hover {
+  background-color: #0056b3;
+}
+
+
+
+/* result form */
+
+.res-form-container {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.res-form h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.res-form div {
+  margin-bottom: 15px;
+}
+
+.res-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.res-input {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.res-submit-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.res-submit-button:hover {
+  background-color: #0056b3;
+}
+
+
+/* student-response */
+.student-response-container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.student-response-heading {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.student-response-list {
+  list-style: none;
+  padding: 0;
+}
+
+.student-response-item {
+  margin-bottom: 20px;
+}
+
+.student-response-label {
+  font-weight: bold;
+}
+
+.student-response-divider {
+  margin-top: 10px;
+  border: 1px solid #ccc;
+}
+

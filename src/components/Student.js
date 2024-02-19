@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import MyNav from './MyNav';
+import StudentNav from '../navPages/StudentNav';
 
 const Student = () => {
   const [postsData, setPostsData] = useState({
@@ -13,15 +13,16 @@ const Student = () => {
       .then((jsonRes) => setPostsData(jsonRes));
   }, []);
 
-  return (
-    <div>
-      <MyNav />
-      <h1>STUDENT PAGE</h1>
+  return ( 
+    <>
+    <StudentNav/>
+    <div className="student-container">
+      <h1 className="student-heading">STUDENT PAGE</h1>
 
       {postsData.role === 'student' && (
-        <div>
-          <h2>Posts:</h2>
-          <table border="1">
+        <div className="posts-container">
+          <h2 className="posts-heading">Posts:</h2>
+          <table className="posts-table" border="1">
             <thead>
               <tr>
                 <th>Title</th>
@@ -44,6 +45,7 @@ const Student = () => {
         </div>
       )}
     </div>
+    </>
   );
 };
 
