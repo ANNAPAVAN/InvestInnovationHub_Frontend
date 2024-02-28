@@ -19,20 +19,20 @@ function StudentSend() {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:2022/studentsend', formData);
-      console.log(response.data.status);
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND}/studentsend`, formData);
+      // console.log(response.data.status);
       alert('Data sent successfully');
     } catch (error) {
-      console.error('Error while sending data:', error);
+      // console.error('Error while sending data:', error);
       alert('Failed to send data');
     }
   };
 
   return (
     <>
-      <StudentNav/>
+      {/* <StudentNav/> */}
       <div className="std-send-container">
-        <h2>Student Send</h2>
+        <h2>Post Idea to Entrepreneur</h2>
         <form onSubmit={handleSubmit} className="std-send-form">
           <div>
             <label htmlFor="student_id">Student ID:</label>

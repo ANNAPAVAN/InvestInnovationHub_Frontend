@@ -11,7 +11,7 @@ const MyReg = () => {
     name: '',
     email: '',
     pwd: '',
-    role: '',
+    role: 'student',
   });
 
   const handleChange = (e) => {
@@ -22,8 +22,8 @@ const MyReg = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:2022/register', formData);
-      console.log(response.data.status);
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND}/register`, formData);
+      // console.log(response.data.status);
       if (response.data.status === 'success') {
         alert('Registration successful');
         navigate('/');
@@ -31,14 +31,14 @@ const MyReg = () => {
         alert('Registration Failure');
       }
     } catch (error) {
-      console.error('Error during registration:', error);
+      // console.error('Error during registration:', error);
       alert('Registration Failure');
     }
   };
 
   return (
     <>
-    <HomeNav/>
+    {/* <HomeNav/> */}
     <div className="registration-container">
       <h1 className="registration-heading">REGISTRATION FORM</h1>
       <form onSubmit={handleSubmit} className="registration-form">
@@ -69,11 +69,15 @@ const MyReg = () => {
               </td>
             </tr>
             <tr>
-              <td>Role</td>
-              <td>
-                <input type="text" name="role" onChange={handleChange} className="registration-input" />
-              </td>
-            </tr>
+                <td>Role</td>
+                <td>
+                  <select name="role" onChange={handleChange} value={formData.role} className="registration-input">
+                    <option value="student">Student</option>
+                    <option value="entrepreneur">Entrepreneur</option>
+                    <option value="investor">Investor</option>
+                  </select>
+                </td>
+              </tr>
             <tr>
               <td colSpan="2">
                 <input type="submit" value="Register" className="registration-submit-btn" />

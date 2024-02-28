@@ -9,7 +9,7 @@ const Investor = () => {
   });
 
   useEffect(() => {
-    fetch("http://localhost:2022/getInvests")
+    fetch(`${process.env.REACT_APP_BACKEND}/getInvests`)
       .then((res) => res.json())
       .then((jsonRes) => setInvestData(jsonRes));
   }, []);
@@ -18,11 +18,11 @@ const Investor = () => {
     <>
     <InvestorNav/>
     <div className="investor-container">
-      <h1 className="investor-heading">INVESTOR PAGE</h1>
+      <h1 className="investor-heading">Projects</h1>
 
       {investData.role === 'investor' && (
         <div className="investments-container">
-          <h2 className="investments-heading">Investments:</h2>
+          {/* <h2 className="investments-heading">Investments</h2> */}
           <table className="investments-table" border="1">
             <thead>
               <tr>

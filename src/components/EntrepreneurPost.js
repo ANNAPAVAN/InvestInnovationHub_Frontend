@@ -18,7 +18,7 @@ function EntrepreneurPost() {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:2022/posts', postFormData);
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND}/posts`, postFormData);
       console.log(response.data.status);
       alert('Successfully Posted')
     } catch (error) {
@@ -28,9 +28,9 @@ function EntrepreneurPost() {
 
   return (
     <>
-    <EntrepreneurNav/> 
+    {/* <EntrepreneurNav/>  */}
     <div className="ent-post-container">
-      <h2 className="ent-post-heading">POST</h2>
+      <h2 className="ent-post-heading">Post new project</h2>
       <form method="POST" onSubmit={handlePostSubmit} className="ent-post-form">
         <table className="ent-form-table">
           <tbody>

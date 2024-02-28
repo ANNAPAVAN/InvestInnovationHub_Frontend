@@ -19,7 +19,7 @@ function ResultForm() {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:2022/postresult', formData);
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND}/postresult`, formData);
       console.log(response.data.status);
       alert('Data submitted successfully');
     } catch (error) {

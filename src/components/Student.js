@@ -8,20 +8,20 @@ const Student = () => {
   });
 
   useEffect(() => {
-    fetch("http://localhost:2022/getPosts")
+    fetch(`${process.env.REACT_APP_BACKEND}/getPosts`)
       .then((res) => res.json())
       .then((jsonRes) => setPostsData(jsonRes));
   }, []);
 
   return ( 
     <>
-    <StudentNav/>
+    {/* <StudentNav/> */}
     <div className="student-container">
-      <h1 className="student-heading">STUDENT PAGE</h1>
+      <h1 className="student-heading">Projects</h1>
 
       {postsData.role === 'student' && (
         <div className="posts-container">
-          <h2 className="posts-heading">Posts:</h2>
+          {/* <h2 className="posts-heading">Posts:</h2> */}
           <table className="posts-table" border="1">
             <thead>
               <tr>

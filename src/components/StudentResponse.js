@@ -5,10 +5,12 @@ import EntrepreneurNav from '../navPages/EntrepreneurNav';
 function StudentResponse() {
   const [ideas, setIdeas] = useState([]);
 
+  const ent_Id = localStorage.getItem('ent_Id');
+
   useEffect(() => {
     async function fetchIdeas() {
       try {
-        const response = await axios.get('http://localhost:2022/getIdeas');
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND}/getIdeas?entId=${ent_Id}`);
         setIdeas(response.data.ideas);
       } catch (error) {
         console.error('Error fetching ideas:', error);
@@ -16,11 +18,11 @@ function StudentResponse() {
     }
 
     fetchIdeas();
-  }, []);
+  }, [ent_Id]);
 
   return (
     <>
-      <EntrepreneurNav/>
+      {/* <EntrepreneurNav/> */}
       <div className="student-response-container">
         <h1 className="student-response-heading">Ideas from Students</h1>
         <ul className="student-response-list">

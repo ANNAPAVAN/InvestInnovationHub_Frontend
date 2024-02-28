@@ -1,6 +1,3 @@
-.lout{
-  text-decoration: none;
-}
 
 /* nav */
 .navbar {
@@ -25,7 +22,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Ensure the container covers the full viewport height */
+  height: 30vh; /* Ensure the container covers the full viewport height */
   /* background-color: #cacac3; */
 }
 
@@ -231,7 +228,7 @@
 /* result */
 
 .result-container {
-  margin: 20px auto;
+  margin: 50px auto;
   max-width: 800px;
 }
 

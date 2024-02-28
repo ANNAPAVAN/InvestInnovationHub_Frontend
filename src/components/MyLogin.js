@@ -13,7 +13,7 @@ const MyLogin = () => {
     id: '',
     name: '',
     pwd: '',
-    role: '',
+    role: 'student',
   });
 
   const handleChange = (e) => {
@@ -24,21 +24,23 @@ const MyLogin = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:2022/login', formData);
-      console.log(response.data.status);
+      // console.log(process.env.BACKEND)
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND}/login`, formData);
+      // console.log(response.data.status);
       
       if(response.data.status === 'success') {
         localStorage.setItem("token", "annapavan");
         alert('Login successful');
         if(response.data.role == 'student'){
-          console.log(response.data.role);
+          // console.log(response.data.role);
           navigate('/student');
         }else if(response.data.role == 'entrepreneur'){
-          console.log(response.data.id);
-          console.log(response.data.role);
+          // console.log(response.data.id);
+          // console.log(response.data.role);
+          localStorage.setItem('ent_Id', response.data.id);
           navigate('/entrepreneur')
         }else{
-          console.log(response.data.role);
+          // console.log(response.data.role);
           navigate('/investor');
         }
       } else {
@@ -50,16 +52,16 @@ const MyLogin = () => {
     }
   };
 
-  useEffect(() => {
-    if (location.pathname === '/') 
-    {
-      localStorage.removeItem("token");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (location.pathname === '/') 
+  //   {
+  //     localStorage.removeItem("token");
+  //   }
+  // }, []);
 
   return (
     <>
-    <HomeNav/>
+    {/* <HomeNav/> */}
     <div className="login-container">
       <h1 className="login-heading">LOGIN FORM</h1>
       <form onSubmit={handleSubmit} className="login-form">
@@ -84,11 +86,15 @@ const MyLogin = () => {
               </td>
             </tr>
             <tr>
-              <td>Role</td>
-              <td>
-                <input type="text" name="role" onChange={handleChange} className="login-input" placeholder='student/entrepreneur/investor'/>
-              </td>
-            </tr>
+                <td>Role</td>
+                <td>
+                  <select name="role" onChange={handleChange} value={formData.role} className="login-input">
+                    <option value="student">Student</option>
+                    <option value="entrepreneur">Entrepreneur</option>
+                    <option value="investor">Investor</option>
+                  </select>
+                </td>
+              </tr>
             <tr>
               <td colSpan="2">
                 <input type="submit" value="Login" className="login-submit-btn" />

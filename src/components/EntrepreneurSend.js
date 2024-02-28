@@ -22,7 +22,7 @@ function EntrepreneurSend() {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:2022/toInvestor', investFormData);
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND}/toInvestor`, investFormData);
       console.log(response.data.status);
       alert('Successfully Send to Investor')
     } catch (error) {
@@ -32,9 +32,9 @@ function EntrepreneurSend() {
 
   return (
     <>
-    <EntrepreneurNav/>
+    {/* <EntrepreneurNav/> */}
     <div className="ent-send-container">
-      <h2 className="ent-send-heading">Send</h2>
+      <h2 className="ent-send-heading">Send project details to Investor</h2>
       <form method="POST" onSubmit={handleInvestSubmit} className="ent-send-form">
         <table className="ent-form-table">
           <tbody>

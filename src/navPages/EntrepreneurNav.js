@@ -3,12 +3,12 @@ import React from 'react';
 function EntrepreneurNav() {
   return (
     <nav className="navbar">
-      <a href="/entrepreneur" className="nav-link">Home</a><br></br>
-      <a href="/entrepreneurpost" className="nav-link">Entrepreneur Post</a><br></br>
-      <a href="/entrepreneursend" className="nav-link">Entrepreneur Send</a><br></br>
-      <a href="/studentresponse" className="nav-link">Response Ideas</a><br></br>
-      <a href="/result" className="nav-link">Results</a>
-      <a href="/" className="nav-link">LogOut</a><br></br>
+      <a href="/entrepreneur" className="nav-link">Home</a>
+      <a href="/entrepreneurpost" className="nav-link">Post</a>
+      <a href="/entrepreneursend" className="nav-link">Send</a>
+      <a href="/entrepreneurstudentresponse" className="nav-link">Responses</a>
+      <a href="/entrepreneurresult" className="nav-link">Results</a>
+      <a href="/" className="nav-link">LogOut</a>
     </nav>
   );
 }

@@ -4,9 +4,9 @@ import EntrepreneurNav from '../navPages/EntrepreneurNav';
 function EntrepreneurHome() {
   return ( 
     <>
-    <EntrepreneurNav/>
+    {/* <EntrepreneurNav/> */}
     <div className="home-container">
-      <h1>Welcome to Our Website</h1>
+      <h1>Invest Innovation Hub</h1>
       <p>This is a sample EntrepreneurHome</p>
     </div>
     </>
