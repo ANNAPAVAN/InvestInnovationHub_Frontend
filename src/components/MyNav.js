@@ -1,9 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function MyNav() {
   return (
     <nav className="navbar">
-      <a href="/" className="nav-link">LogOut</a>
+
+    <Link to="/" className="nav-link">LogOut</Link>
+
+      {/* <a href="/" className="nav-link">LogOut</a> */}
     </nav>
   );
 }

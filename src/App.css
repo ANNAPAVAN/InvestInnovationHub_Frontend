@@ -14,34 +14,59 @@
   text-decoration: none; 
   padding: 10px 20px; 
   margin: 0 10px; 
+  font-size: 16px; 
+  font-weight: bold;
 }
 
 /* home */
+
+/* .home-background {
+  background-image: url('https://www.pngall.com/wp-content/uploads/2016/07/Innovation-PNG-Picture.png'); 
+  
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh; 
+} */
+
 .home-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 30vh; /* Ensure the container covers the full viewport height */
-  /* background-color: #cacac3; */
+  margin-top: 50px;
+  text-align: center;
+  padding: 20px;
 }
 
-.home-container h1 {
-  font-size: 32px;
+.home-heading {
+  font-size: 2.5rem;
   margin-bottom: 20px;
+  color: red;
 }
 
-.home-container p {
-  font-size: 18px;
-  line-height: 1.5;
+.home-description {
+  font-size: 1.1rem;
+  margin-bottom: 40px;
 }
 
 
 /* login */
+
+
+/* .logreg-background {
+  background-image: url('https://i.pinimg.com/originals/6f/55/cd/6f55cd7a6b27e4acb9dd49dee1ed2b4e.png'); 
+  background-image: url('http://clipart-library.com/image_gallery2/Abstract-PNG-Image.png');   
+  
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh; 
+} */
+
+
 .login-container {
+  /* background-image: url('https://wallpapercave.com/wp/wp9764093.jpg'); */
+  /* background-image: url('https://www.pngkey.com/png/full/98-985656_black-gradient-png.png');  */
   max-width: 400px;
   margin: 0 auto; 
-  margin-top: 50px;
+  margin-top: 70px;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -104,9 +129,10 @@
 /* register */
 
 .registration-container {
+  /* background-image: url('https://www.pngkey.com/png/full/98-985656_black-gradient-png.png');  */
   max-width: 400px;
   margin: 0 auto;
-  margin-top: 50px;
+  margin-top: 70px;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -156,11 +182,13 @@
 
 .student-container {
   margin-top: 50px;
-  
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .student-heading {
   text-align: center;
+  color:#ff0000
 }
 
 .posts-container {
@@ -183,6 +211,15 @@
   text-align: center;
 }
 
+.posts-table tbody tr:hover {
+  background-color: #ddd;
+}
+
+.posts-table th{
+  background-color: #333;
+  color: white;
+}
+
 
 
 
@@ -190,6 +227,8 @@
 
 .investor-container {
   margin-top: 50px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .investor-heading {
@@ -224,17 +263,23 @@
   background-color: #e0e0e0;
 }
 
+.investments-table th{
+  background-color: #333;
+  color: white;
+}
+
 
 /* result */
 
 .result-container {
-  margin: 50px auto;
+  margin: 70px auto;
   max-width: 800px;
 }
 
 .result-title {
   font-size: 24px;
   margin-bottom: 20px;
+  color: hsl(0, 100%, 51%);
 }
 
 .result-table {
@@ -258,10 +303,13 @@
 }
 
 
+
+
+
 /* student send */
 .std-send-container {
   max-width: 500px;
-  margin: 20px auto;
+  margin: 70px auto;
   padding: 20px;
   background-color: #f9f9f9;
   border-radius: 5px;
@@ -310,7 +358,7 @@
 
 .ent-post-container {
   max-width: 500px;
-  margin: 20px auto;
+  margin: 100px auto;
   padding: 20px;
   background-color: #f9f9f9;
   border-radius: 5px;
@@ -360,7 +408,7 @@
 
 .ent-send-container {
   max-width: 500px;
-  margin: 20px auto;
+  margin: 60px auto;
   padding: 20px;
   background-color: #f9f9f9;
   border-radius: 5px;
@@ -459,7 +507,7 @@
 /* student-response */
 .student-response-container {
   max-width: 800px;
-  margin: 50px auto;
+  margin: 70px auto;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -489,3 +537,40 @@
   border: 1px solid #ccc;
 }
 
+
+/* All Users */
+
+.cards-top-container {
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-top: 70px;
+  padding: 20px;
+  
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.sample-card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sample-image {
+  width: 100%;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.sample-details {
+  padding: 10px;
+}
+
+.sample-details p {
+  margin: 5px 0;
+}

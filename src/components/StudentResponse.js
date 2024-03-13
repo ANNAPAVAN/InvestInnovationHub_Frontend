@@ -5,7 +5,7 @@ import EntrepreneurNav from '../navPages/EntrepreneurNav';
 function StudentResponse() {
   const [ideas, setIdeas] = useState([]);
 
-  const ent_Id = localStorage.getItem('ent_Id');
+  const ent_Id = localStorage.getItem('user_Id');
 
   useEffect(() => {
     async function fetchIdeas() {

@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import HomeNav from './HomeNav';
 
-const MyLogin = () => {
+const MyLogin = ({ onLogin }) => {
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -27,20 +27,26 @@ const MyLogin = () => {
       // console.log(process.env.BACKEND)
       const response = await axios.post(`${process.env.REACT_APP_BACKEND}/login`, formData);
       // console.log(response.data.status);
+      // console.log("Anna pavan login");
       
       if(response.data.status === 'success') {
         localStorage.setItem("token", "annapavan");
         alert('Login successful');
         if(response.data.role == 'student'){
           // console.log(response.data.role);
+          onLogin(response.data.id);
+          localStorage.setItem('user_Id', response.data.id);
           navigate('/student');
         }else if(response.data.role == 'entrepreneur'){
+          onLogin(response.data.id);
           // console.log(response.data.id);
           // console.log(response.data.role);
-          localStorage.setItem('ent_Id', response.data.id);
+          localStorage.setItem('user_Id', response.data.id);
           navigate('/entrepreneur')
         }else{
+          onLogin(response.data.id);
           // console.log(response.data.role);
+          localStorage.setItem('user_Id', response.data.id);
           navigate('/investor');
         }
       } else {
@@ -61,6 +67,7 @@ const MyLogin = () => {
 
   return (
     <>
+    <div className='logreg-background'>
     {/* <HomeNav/> */}
     <div className="login-container">
       <h1 className="login-heading">LOGIN FORM</h1>
@@ -103,6 +110,7 @@ const MyLogin = () => {
           </tbody>
         </table>
       </form>
+    </div>
     </div>
     </>
   );

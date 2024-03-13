@@ -1,6 +1,6 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import Login from './components/MyLogin';
@@ -33,6 +33,11 @@ import AllStudents from './users/AllStudents';
 import AllEntrepreneurs from './users/AllEntrepreneurs';
 import AllInvestors from './users/AllInvestors';
 
+
+import Profile from './userDetails/Profile';
+import UpdateProfile from './userDetails/UpdateProfile';
+
+
 function App() {
   return (
     <div className="App">
@@ -42,13 +47,20 @@ function App() {
 }
 
 function AppContent() {
+
+  const [id,setId] = useState("");
+
+  function handleLogin(userId) {
+    console.log('logged in with ID:', userId);
+    setId(userId);
+  }
   return (
     <>
       <BrowserRouter>
         <Navbar />
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login onLogin={handleLogin} />} />
           <Route path="/register" element={<MyReg />} />
           <Route path="/allstudents" element={<AllStudents />} />
           <Route path="/allentrepreneurs" element={<AllEntrepreneurs />} />
@@ -58,16 +70,26 @@ function AppContent() {
           <Route path="/student" element={<Protected><StudentHome /></Protected>} />
           <Route path="/studentsend" element={<Protected><StudentSend /></Protected>} />
           <Route path="/studentresult" element={<Protected><Result /></Protected>} />
+          <Route path="/studentprofile" element={<Protected><Profile /></Protected>} />
 
           <Route path="/entrepreneur" element={<Protected><EntrepreneurHome /></Protected>} />
           <Route path="/entrepreneurpost" element={<Protected><EntrepreneurPost /></Protected>} />
           <Route path="/entrepreneursend" element={<Protected><EntrepreneurSend /></Protected>} />
           <Route path="/entrepreneurstudentresponse" element={<Protected><StudentResponse /></Protected>} />
           <Route path="/entrepreneurresult" element={<Protected><Result /></Protected>} />
+          <Route path="/entrepreneurprofile" element={<Protected><Profile /></Protected>} />
 
           <Route path="/investor" element={<Protected><InvestorHome /></Protected>} />
           <Route path="/investorpage" element={<Protected><Investor /></Protected>} />
           <Route path="/investorresult" element={<Protected><Result /></Protected>} />
+          <Route path="/investorprofile" element={<Protected><Profile /></Protected>} />
+
+
+          {/* <Route path="/studentupdateprofile" element={<Protected><UpdateProfile /></Protected>} />
+          <Route path="/entrepreneurupdateprofile" element={<Protected><UpdateProfile /></Protected>} />
+          <Route path="/investorupdateprofile" element={<Protected><UpdateProfile /></Protected>} /> */}
+
+
         </Routes>
       </BrowserRouter>
     </>
