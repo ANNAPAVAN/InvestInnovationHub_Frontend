@@ -7,7 +7,6 @@ function MyNav() {
 
     <Link to="/" className="nav-link">LogOut</Link>
 
-      {/* <a href="/" className="nav-link">LogOut</a> */}
     </nav>
   );
 }

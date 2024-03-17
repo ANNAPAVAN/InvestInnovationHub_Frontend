@@ -85,10 +85,6 @@ function AppContent() {
           <Route path="/investorprofile" element={<Protected><Profile /></Protected>} />
 
 
-          {/* <Route path="/studentupdateprofile" element={<Protected><UpdateProfile /></Protected>} />
-          <Route path="/entrepreneurupdateprofile" element={<Protected><UpdateProfile /></Protected>} />
-          <Route path="/investorupdateprofile" element={<Protected><UpdateProfile /></Protected>} /> */}
-
 
         </Routes>
       </BrowserRouter>

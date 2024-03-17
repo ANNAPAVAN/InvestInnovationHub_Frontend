@@ -56,7 +56,7 @@ function Profile() {
     <>
       <div className="student-response-container">
         <h1 className="student-response-heading">Profile</h1>
-        <button onClick={handleDeleteProfile}>Delete Profile Permanently</button>
+       
         <ul className="student-response-list">
           {user.map((ur, index) => (
             <li key={index} className="student-response-item">
@@ -69,7 +69,8 @@ function Profile() {
             </li>
           ))}
         </ul>
-        <button onClick={handleUpdateProfileClick}>Update Profile <span role="img" aria-label="edit">✏️</span></button>
+        <button onClick={handleUpdateProfileClick}>Update Profile <span role="img" aria-label="edit">✏️</span></button><br></br><br></br>
+        <button onClick={handleDeleteProfile}>Delete Profile Permanently</button>
       </div>
       {showUpdateProfile && <UpdateProfile />}
     </>

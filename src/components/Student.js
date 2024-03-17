@@ -1,5 +1,5 @@
+
 import React, { useEffect, useState } from 'react';
-import StudentNav from '../navPages/StudentNav';
 
 const Student = () => {
   const [postsData, setPostsData] = useState({
@@ -20,28 +20,18 @@ const Student = () => {
       <h1 className="student-heading">Projects</h1>
 
       {postsData.role === 'student' && (
-        <div className="posts-container">
+        <div className="student-posts-container">
           {/* <h2 className="posts-heading">Posts:</h2> */}
-          <table className="posts-table" border="1">
-            <thead>
-              <tr>
-                <th>Title</th>
-                <th>Project Id</th>
-                <th>Entrepreneur Id</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              {postsData.posts.map((post) => (
-                <tr key={post.p_id}>
-                  <td>{post.p_title}</td>
-                  <td>{post.p_id}</td>
-                  <td>{post.e_id}</td>
-                  <td>{post.p_desc}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <ul className="student-project-list">
+            {postsData.posts.map((post) => (
+              <li key={post.p_id} className="student-project-item">
+                <h3>{post.p_title}</h3>
+                <p><strong>Project ID:</strong> {post.p_id}</p>
+                <p><strong>Entrepreneur ID:</strong> {post.e_id}</p>
+                <p><strong>Description:</strong> {post.p_desc}</p>
+              </li>
+            ))}
+          </ul>
         </div>
       )}
     </div>
@@ -50,3 +40,4 @@ const Student = () => {
 };
 
 export default Student;
+
