@@ -4,14 +4,14 @@ import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import HomeNav from './HomeNav';
 
-const MyLogin = ({ onLogin }) => {
+const MyLogin = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
-
+  
   const [formData, setFormData] = useState({
     id: '',
-    name: '',
+    email: '',
     pwd: '',
     role: 'student',
   });
@@ -24,29 +24,29 @@ const MyLogin = ({ onLogin }) => {
     e.preventDefault();
 
     try {
-      // console.log(process.env.BACKEND)
       const response = await axios.post(`${process.env.REACT_APP_BACKEND}/login`, formData);
-      // console.log(response.data.status);
-      // console.log("Anna pavan login");
-      
+
+      console.log("myjwt---> ", response.data);
+      const token  = response.data.token;
+
+      // const response2 = await axios.get(`${process.env.REACT_APP_BACKEND}/getTokenDetails?token=${token}` );
+      // console.log("myjwt Details(from token) id and role---> ", response2.data);
+
+      if(response.data.status==="notexisted")
+      {
+        alert("Please Regitser first !!!.......");
+        return;
+      }
+
       if(response.data.status === 'success') {
-        localStorage.setItem("token", "annapavan");
-        alert('Login successful');
-        if(response.data.role == 'student'){
-          // console.log(response.data.role);
-          onLogin(response.data.id);
-          localStorage.setItem('user_Id', response.data.id);
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem('user_Id', response.data.id);
+        // alert('Login successful');
+        if(response.data.myrole == 'student'){
           navigate('/student');
-        }else if(response.data.role == 'entrepreneur'){
-          onLogin(response.data.id);
-          // console.log(response.data.id);
-          // console.log(response.data.role);
-          localStorage.setItem('user_Id', response.data.id);
+        }else if(response.data.myrole == 'entrepreneur'){
           navigate('/entrepreneur')
         }else{
-          onLogin(response.data.id);
-          // console.log(response.data.role);
-          localStorage.setItem('user_Id', response.data.id);
           navigate('/investor');
         }
       } else {
@@ -58,13 +58,6 @@ const MyLogin = ({ onLogin }) => {
     }
   };
 
-  // useEffect(() => {
-  //   if (location.pathname === '/') 
-  //   {
-  //     localStorage.removeItem("token");
-  //   }
-  // }, []);
-
   return (
     <>
     <div className='logreg-background'>
@@ -74,16 +67,16 @@ const MyLogin = ({ onLogin }) => {
       <form onSubmit={handleSubmit} className="login-form">
         <table className="login-table">
           <tbody>
-            <tr>
-              <td>User Id</td>
+            {/* <tr>
+              <td>Id</td>
               <td>
                 <input type="text" name="id" onChange={handleChange} className="login-input" />
               </td>
-            </tr>
+            </tr> */}
             <tr>
-              <td>UserName</td>
+              <td>Email</td>
               <td>
-                <input type="text" name="name" onChange={handleChange} className="login-input" />
+                <input type="text" name="email" onChange={handleChange} className="login-input" />
               </td>
             </tr>
             <tr>
@@ -92,7 +85,7 @@ const MyLogin = ({ onLogin }) => {
                 <input type="password" name="pwd" onChange={handleChange} className="login-input" />
               </td>
             </tr>
-            <tr>
+            {/* <tr>
                 <td>Role</td>
                 <td>
                   <select name="role" onChange={handleChange} value={formData.role} className="login-input">
@@ -101,10 +94,13 @@ const MyLogin = ({ onLogin }) => {
                     <option value="investor">Investor</option>
                   </select>
                 </td>
-              </tr>
+              </tr> */}
             <tr>
               <td colSpan="2">
-                <input type="submit" value="Login" className="login-submit-btn" />
+              {/* <button type="submit" class="login-submit-btn">Login</button> */}
+              <button type="submit" className="login-submit-btn" disabled={!formData.email || !formData.pwd}>
+                {!formData.email || !formData.pwd ? "All fields are required" : "Login"}
+              </button>
               </td>
             </tr>
           </tbody>

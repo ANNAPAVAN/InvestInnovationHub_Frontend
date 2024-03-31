@@ -3,39 +3,33 @@ import axios from 'axios';
 import EntrepreneurNav from '../navPages/EntrepreneurNav';
 import { useNavigate } from 'react-router-dom';
 
-function StudentResponse() {
+function StudentIdeas() {
 
   const navigate = useNavigate();
 
   const [ideas, setIdeas] = useState([]);
 
-  const ent_Id = localStorage.getItem('user_Id');
+  const user_Id = localStorage.getItem('user_Id');
+  console.log("student Id ",user_Id);
 
   useEffect(() => {
     async function fetchIdeas() {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_BACKEND}/getIdeas?entId=${ent_Id}`);
-        const filteredIdeas = response.data.ideas.filter(idea => idea.status === 'pending');
-        setIdeas(filteredIdeas);
-        // setIdeas(response.data.ideas);
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND}/getStudentIdeas?userId=${user_Id}`);
+        console.log("------------>",response);
+        setIdeas(response.data.StdIdeas);
       } catch (error) {
         console.error('Error fetching ideas:', error);
       }
     }
 
     fetchIdeas();
-  }, [ent_Id]);
-
-  function handleButton(inv_post){
-    navigate("/entrepreneursend", { state: { inv_post } });
-  }
-
-
+  }, [user_Id]);
   return (
     <>
       {/* <EntrepreneurNav/> */}
       <div className="student-response-container">
-        <h1 className="student-response-heading">Ideas from Students</h1>
+        <h1 className="student-response-heading">Student Ideas</h1>
         <ul className="student-response-list">
           {ideas.map((idea, index) => (
             <li key={index} className="student-response-item">
@@ -44,13 +38,14 @@ function StudentResponse() {
                   <img src={idea.image} alt="Idea Image" className="student-response-image" />
                 </div>
               )}
-              <strong className="student-response-label">Student ID:</strong> {idea.student_id}<br />
+              {/* <strong className="student-response-label">Student ID:</strong> {idea.student_id}<br /> */}
               <strong className="student-response-label">Entrepreneur ID:</strong> {idea.ent_id}<br />
               <strong className="student-response-label">Project ID:</strong> {idea.p_id}<br />
               <strong className="student-response-label">Project Title:</strong> {idea.p_title}<br />
               <strong className="student-response-label">Project Desc:</strong> {idea.p_desc}<br />
               <strong className="student-response-label">Idea:</strong> {idea.idea}<br />
-              <button className='student-response-btn' onClick={() => handleButton(idea)}>Submit</button>
+              {/* <strong className="student-response-label-status">Status:</strong> {idea.status}<br /> */}
+              <strong>Status:</strong><strong className={`student-response-label-status ${idea.status}`}> {idea.status}</strong>
               <hr className="student-response-divider" />
             </li>
           ))}
@@ -60,4 +55,4 @@ function StudentResponse() {
   );
 }
 
-export default StudentResponse;
+export default StudentIdeas;

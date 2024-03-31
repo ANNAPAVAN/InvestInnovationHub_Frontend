@@ -4,13 +4,24 @@ import React, { useEffect, useState } from 'react';
 
 const AllInvestors = () => {
   const [investors, setInvestors] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_BACKEND}/getInvestors`)
+    fetch(`${process.env.REACT_APP_BACKEND}/getAllUsers?user=investor`)
       .then(response => response.json())
-      .then(data => setInvestors(data.investors))
+      .then(data => setInvestors(data.allusers))
       .catch(error => console.error('Error fetching results:', error));
   }, []);
+
+  const filteredInvestors = investors.filter(investor => {
+    return (
+      investor.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      investor.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      investor.id.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  });
+
+  filteredInvestors.sort((a,b)=> b.credits - a.credits);
 
   return (
     <div className="cards-top-container">
@@ -32,8 +43,16 @@ const AllInvestors = () => {
     </div>
 </div>
 
+     <input
+        type="text"
+        placeholder="Search by name, email, or ID"
+        value={searchTerm}
+        onChange={e => setSearchTerm(e.target.value)}
+        className="sample-users-search-bar"
+      />
+
       <div className="card-container">
-        {investors.map((investor, index) => (
+        {filteredInvestors.map((investor, index) => (
           <div key={index} className="sample-card">
             {/* <img src={investor.image} alt={`Image of ${investor.name}`} className="sample-image" /> */}
             {investor.image ? (
@@ -42,9 +61,10 @@ const AllInvestors = () => {
               <img src="https://www.clipartkey.com/mpngs/m/152-1520367_user-profile-default-image-png-clipart-png-download.png" alt={`Default Image`} className="sample-image" />
             )}
             <div className="sample-details">
-              <p><strong>Investor ID:</strong> {investor.id}</p>
+              {/* <p><strong>Investor ID:</strong> {investor.id}</p> */}
               <p><strong>Name:</strong> {investor.name}</p>
               <p><strong>Email:</strong> {investor.email}</p>
+              <p><strong>Coins:</strong> {investor.credits}<span role="img" aria-label="coin">&#128176;</span></p>
             </div>
           </div>
         ))}
@@ -54,3 +74,4 @@ const AllInvestors = () => {
 };
 
 export default AllInvestors;
+ 

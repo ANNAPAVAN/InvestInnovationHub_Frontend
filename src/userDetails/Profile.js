@@ -25,8 +25,11 @@ function Profile() {
     fetchIdeas();
   }, [user_Id]);
 
+  const [swap,setSwap] = useState(false);
+
   const handleUpdateProfileClick = () => {
-    setShowUpdateProfile(true);
+    setSwap(!swap);
+    setShowUpdateProfile(swap);
   };
 
   const handleDeleteProfile = async (e) => {
@@ -51,12 +54,15 @@ function Profile() {
       alert('Deletion Failure');
     }
   }
-
+ 
   return (
     <>
-      <div className="student-response-container">
+
+      {showUpdateProfile ? (
+      <UpdateProfile user={user}/>):
+        <div className="student-response-container">
         <h1 className="student-response-heading">Profile</h1>
-       
+        
         <ul className="student-response-list">
           {user.map((ur, index) => (
             <li key={index} className="student-response-item">
@@ -69,10 +75,11 @@ function Profile() {
             </li>
           ))}
         </ul>
-        <button onClick={handleUpdateProfileClick}>Update Profile <span role="img" aria-label="edit">✏️</span></button><br></br><br></br>
-        <button onClick={handleDeleteProfile}>Delete Profile Permanently</button>
+        {/* <button className="profile-delete-btn" onClick={handleDeleteProfile}>Delete Account Permanently</button> */}
       </div>
-      {showUpdateProfile && <UpdateProfile />}
+      }
+      <button className="profile-update-btn" onClick={handleUpdateProfileClick}>{swap?"Update":"Profile"} <span role="img" aria-label="edit">✏️</span></button><br></br><br></br>
+
     </>
   );
 }

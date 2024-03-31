@@ -3,12 +3,16 @@ import axios from 'axios';
 import EntrepreneurNav from '../navPages/EntrepreneurNav';
 
 function EntrepreneurPost() {
+
+  const user_id = localStorage.getItem("user_Id");
+
   const [postFormData, setPostFormData] = useState({
-    e_id: '',
-    p_id: '',
+    e_id: user_id,
+    p_id: 'p',
     p_title: '',
     p_desc: '',
-  });
+    p_image:'',
+  }); 
 
   const handlePostChange = (e) => {
     setPostFormData({ ...postFormData, [e.target.name]: e.target.value });
@@ -26,6 +30,18 @@ function EntrepreneurPost() {
     }
   };
 
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      setPostFormData((prevData) => ({
+        ...prevData,
+        p_image: reader.result,
+      }));
+    };
+  };
+
   return (
     <>
     {/* <EntrepreneurNav/>  */}
@@ -34,14 +50,14 @@ function EntrepreneurPost() {
       <form method="POST" onSubmit={handlePostSubmit} className="ent-post-form">
         <table className="ent-form-table">
           <tbody>
-            <tr>
+            {/* <tr>
               <td>Entrepreneur Id</td>
-              <td><input type="text" name="e_id" onChange={handlePostChange} className="ent-input-field" /></td>
-            </tr>
-            <tr>
+              <td><input type="text" value={user_id} name="e_id" onChange={handlePostChange} className="ent-input-field" /></td>
+            </tr> */}
+            {/* <tr>
               <td>Project Id</td>
               <td><input type="text" name="p_id" onChange={handlePostChange} className="ent-input-field" /></td>
-            </tr>
+            </tr> */}
             <tr>
               <td>Project Title</td>
               <td><input type="text" name="p_title" onChange={handlePostChange} className="ent-input-field" /></td>
@@ -51,7 +67,23 @@ function EntrepreneurPost() {
               <td><textarea name="p_desc" rows="4" cols="30" onChange={handlePostChange} className="ent-textarea-field"></textarea></td>
             </tr>
             <tr>
-              <td><input type="submit" value="POST" className="ent-submit-button" /></td>
+                 <td>Image</td>
+                 <td>
+                   <input type="file" name="image" onChange={handleImageChange} accept="image/*" className="registration-input" />
+                   <img src={postFormData.p_image} alt="" className="registration-preview-image" />
+                 </td>
+             </tr>
+            <tr>
+              <td>
+                <button
+                  type="submit"
+                  className="ent-submit-button"
+                  disabled={postFormData.p_desc.length <= 100 || postFormData.p_desc.length >= 999 }
+                >
+                  POST
+                </button>
+              </td>
+
             </tr>
           </tbody>
         </table>

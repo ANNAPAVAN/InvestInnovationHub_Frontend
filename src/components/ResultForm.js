@@ -1,7 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import axios from 'axios';
+import { useLocation } from 'react-router-dom';
 
 function ResultForm() {
+
+  const location = useLocation();
+  const { res } = location.state;
+  const user_Id = localStorage.getItem('user_Id');
+
+
+  useEffect(() => {
+    if (res) {
+      console.log(res); 
+    }
+  }, [res]);
+
   const [formData, setFormData] = useState({
     std_id: '',
     ent_id: '',
@@ -10,6 +23,19 @@ function ResultForm() {
     proj_title: '',
     amount: '',
   });
+
+  useEffect(() => {
+    if (res) {
+      setFormData({
+        std_id: res.sid,
+        ent_id: res.eid,
+        inv_id: user_Id,
+        proj_id: res.pid,
+        proj_title: res.title,
+        amount: res.amt,
+      });
+    }
+  }, [res]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -26,13 +52,13 @@ function ResultForm() {
       console.error('Error while submitting data:', error);
       alert('Failed to submit data');
     }
-  };
+  }; 
 
   return (
     <div className="res-form-container">
       <h2>Submit Result</h2>
       <form onSubmit={handleSubmit} className="res-form">
-        <div>
+        {/* <div>
           <label htmlFor="std_id">Student ID:</label>
           <input type="text" id="std_id" name="std_id" value={formData.std_id} onChange={handleChange} required className="res-input" />
         </div>
@@ -47,7 +73,7 @@ function ResultForm() {
         <div>
           <label htmlFor="proj_id">Project ID:</label>
           <input type="text" id="proj_id" name="proj_id" value={formData.proj_id} onChange={handleChange} required className="res-input" />
-        </div>
+        </div> */}
         <div>
           <label htmlFor="proj_title">Project Title:</label>
           <input type="text" id="proj_title" name="proj_title" value={formData.proj_title} onChange={handleChange} required className="res-input" />

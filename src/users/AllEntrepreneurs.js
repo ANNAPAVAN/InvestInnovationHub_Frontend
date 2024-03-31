@@ -1,24 +1,31 @@
 
-
-
-
 import React, { useEffect, useState } from 'react';
 
 const AllEntrepreneurs = () => {
   const [entrepreneurs, setEntrepreneurs] = useState([]);
-
+  const [searchTerm, setSearchTerm] = useState('');
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_BACKEND}/getEntrepreneurs`)
+    fetch(`${process.env.REACT_APP_BACKEND}/getAllUsers?user=entrepreneur`)
       .then(response => response.json())
       .then(data => {
-        if (data && data.entrepreneurs) {
-          setEntrepreneurs(data.entrepreneurs);
+        if (data && data.allusers) {
+          setEntrepreneurs(data.allusers);
         } else {
           throw new Error('Data format is incorrect');
         }
       })
       .catch(error => console.error('Error fetching results:', error));
   }, []);
+
+  const filteredEntrepreneurs = entrepreneurs.filter(ent => {
+    return(
+      ent.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      ent.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      ent.id.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+  })
+
+  filteredEntrepreneurs.sort((a,b)=> b.credits-a.credits)
 
   return (
     <div className="cards-top-container">
@@ -40,8 +47,15 @@ const AllEntrepreneurs = () => {
     </div>
 </div>
 
+      <input
+        type="text"
+        placeholder='search by name, email or id'
+        value={searchTerm}
+        onChange={e=> setSearchTerm(e.target.value)}
+        className="sample-users-search-bar"
+      />
       <div className="card-container">
-        {entrepreneurs.map((entrepreneur, index) => (
+        {filteredEntrepreneurs.map((entrepreneur, index) => (
           <div key={index} className="sample-card">
             {/* <img src={entrepreneur.image} alt={`Image of ${entrepreneur.name}`} className="sample-image" /> */}
             {entrepreneur.image ? (
@@ -50,9 +64,10 @@ const AllEntrepreneurs = () => {
               <img src="https://www.clipartkey.com/mpngs/m/152-1520367_user-profile-default-image-png-clipart-png-download.png" alt={`Default Image`} className="sample-image" />
             )}
             <div className="sample-details">
-              <p><strong>Entrepreneur ID:</strong> {entrepreneur.id}</p>
+              {/* <p><strong>Entrepreneur ID:</strong> {entrepreneur.id}</p> */}
               <p><strong>Name:</strong> {entrepreneur.name}</p>
               <p><strong>Email:</strong> {entrepreneur.email}</p>
+              <p><strong>Coins:</strong> {entrepreneur.credits}<span role="img" aria-label="coin">&#128176;</span></p>
             </div>
           </div>
         ))}

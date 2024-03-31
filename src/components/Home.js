@@ -1,17 +1,61 @@
 import React from 'react';
 import {useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation,useNavigate } from 'react-router-dom';
 import ResBody from './ResBody';
 import Footer from './Footer';
+import axios from 'axios';
 
 function Home() {
+    const navigate = useNavigate();
+    useEffect(() => {
+      const fetchTokenData = async () => {
+        try {
+          const token = localStorage.getItem("token");
+          if (!token) {
+            console.log("Token not found in local storage");
+            return;
+          }
+          console.log(token);
+          const response2 = await axios.get(`${process.env.REACT_APP_BACKEND}/getTokenDetails?token=${token}`);
+          console.log("myjwt Details(from token) id and role---> ", response2.data);
+          if(response2.data.length==0){
+            throw new Error("Response data is empty");
+          }
+
+          let str = response2.data.split(" ");
+
+          const myuser_id = localStorage.getItem("user_Id");
+          console.log("--",myuser_id,"---",str[0],"---",str[1])
+          if (str[0] === myuser_id) {
+            navigate(`/${str[1]}`);
+            return;
+          }else{
+            alert("Invalid User");
+            localStorage.removeItem("token");
+            localStorage.removeItem("user_Id");
+            navigate("/");
+            return;
+          }
+    
+    
+        } catch (error) {
+            alert("Session TimeOut Please ReLogin again!!..");
+            localStorage.removeItem("token");
+            localStorage.removeItem("user_Id");
+            navigate("/");
+        }
+      };
+    
+      fetchTokenData();
+    }, [navigate]);
+    
   // console.log(process.env.REACT_APP_BACKEND);
   const location = useLocation();
   const [displayText, setDisplayText] = useState('');
   useEffect(() => {
-    if (location.pathname === '/') {
-      localStorage.removeItem("token");
-    }
+    // if (location.pathname === '/') {
+    //   localStorage.removeItem("token");
+    // }
     const text = "JOIN US NOW !!";
 
     let currentIndex = 0;
@@ -30,16 +74,15 @@ function Home() {
   
   return ( 
     <>
-    {/* <img src="https://www.thesmartbridge.com/images/innovativeprojects.jpg" alt="image1" id="pic"/> */}
 
 
     <div className="home-para1">
         <div>
-          <h1 className="hp">Empowering Students and entrepreneurs together <br></br>
+        <h1 className="hp">Empowering Students, Entrepreneurs, and Investors Together <br></br>
           <span className='sp'>{displayText}</span>
            </h1>
 
-          <p>Empowering Students and entrepreneurs together Empowering Students and entrepreneurs together Empowering Students and entrepreneurs together Empowering Students and entrepreneurs together</p>
+           <p>Our mission is to create a vibrant ecosystem where students and entrepreneurs work hand in hand, leveraging each other's strengths and expertise to drive positive change and innovation. Together, we strive to build a future where creativity, passion, and entrepreneurship flourish, making a meaningful impact on society and the world.</p>
         </div>
         <div>
           <img src="https://content.presentermedia.com/content/animsp/00007000/7148/airplane_passenger_ride_md_nwm_v2.gif" alt="image1" id="pic"/>
