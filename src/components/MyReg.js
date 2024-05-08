@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import axios from 'axios';
+import {FaEye,FaEyeSlash} from "react-icons/fa"
 
 function MyReg() {
   const [formData, setFormData] = useState({
@@ -13,6 +14,7 @@ function MyReg() {
   });
 
   const [errors, setErrors] = useState({});
+  const [pwdbtn,setPwdbtn] = useState(false);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -84,11 +86,15 @@ function MyReg() {
                 </td>
               </tr>
               <tr>
-                <td>Password</td>
+                <td>Password </td>
+                <tr>
+                 <td><input type={pwdbtn?"text":"password"} name="pwd" onChange={handleChange} className="registration-input" /></td>
+                 <td><div onClick={()=>setPwdbtn(!pwdbtn)}><span className="registration-showbtn">{<FaEye/>}</span></div></td> 
+                </tr>
                 <td>
-                  <input type="password" name="pwd" onChange={handleChange} className="registration-input" />
                   {errors.pwd && <span className="registration-error">{errors.pwd}</span>} 
                 </td>
+                
               </tr>
              <tr>
                  <td>Image</td>

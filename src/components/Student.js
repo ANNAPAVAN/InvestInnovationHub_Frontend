@@ -1,10 +1,14 @@
 
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Student = () => {
 
   const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+  const email = localStorage.getItem("IIH_email");
+  console.log("my token ", token);
 
   const [postsData, setPostsData] = useState({
     role: '',
@@ -12,9 +16,31 @@ const Student = () => {
   });
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_BACKEND}/getPosts`)
-      .then((res) => res.json())
-      .then((jsonRes) => setPostsData(jsonRes));
+    const fetchPosts = async () => {
+      try {
+        
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND}/getPosts`, {
+          headers: {
+            Authorization: token, 
+            email
+          }
+        });
+        console.log("-------*****////////-------",response.data.status);
+        if(response.data.status=="failed"){
+            alert("Invalid User");
+            localStorage.removeItem("token");
+            localStorage.removeItem("user_Id");
+            navigate("/");
+        }else{
+            setPostsData(response.data);
+        }
+        
+      } catch (error) {
+        console.error('Error fetching posts:', error);
+      }
+    };
+
+    fetchPosts();
   }, []);
 
   function handleButton(post){

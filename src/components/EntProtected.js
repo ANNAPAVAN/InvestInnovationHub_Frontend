@@ -1,29 +1,10 @@
-// import React from "react";
-// import { Navigate } from "react-router-dom";
-
-// const Protected = ({ children }) => {
-  
-
-//   // Check if the token is present in localStorage
-//   const token = localStorage.getItem("token");
-//   if (!token) {
-//     // If the token is not present, redirect to the login page
-//     return <Navigate to="/" />;
-//   }
-
-//   // If the token is present, render the children (In component)
-//   return <>{children}</>;
-// };
-
-// export default Protected;
-
 
 
 import { useEffect } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const Protected = ({ children }) => {
+const EntProtected = ({ children }) => {
 
   const navigate = useNavigate();
 
@@ -47,9 +28,9 @@ const Protected = ({ children }) => {
         }
 
         let str = response2.data.split(" ");
-        console.log("--", myuser_id, "---", str[0], "---role ", str[1]); 
+        // console.log("--", myuser_id, "---", str[0], "---", str[1]); 
 
-        if (str[0] === myuser_id && str[1]=="student") {
+        if (str[0] === myuser_id && str[1]=="entrepreneur") {
           // If user is valid, continue rendering children
         } else {
           alert("Invalid User");
@@ -76,4 +57,4 @@ const Protected = ({ children }) => {
   }
 };
 
-export default Protected;
+export default EntProtected;

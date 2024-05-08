@@ -8,6 +8,8 @@ function StudentIdeas() {
   const navigate = useNavigate();
 
   const [ideas, setIdeas] = useState([]);
+  const token = localStorage.getItem("token");
+  const email = localStorage.getItem("IIH_email");
 
   const user_Id = localStorage.getItem('user_Id');
   console.log("student Id ",user_Id);
@@ -15,9 +17,20 @@ function StudentIdeas() {
   useEffect(() => {
     async function fetchIdeas() {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_BACKEND}/getStudentIdeas?userId=${user_Id}`);
-        console.log("------------>",response);
-        setIdeas(response.data.StdIdeas);
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND}/getStudentIdeas?userId=${user_Id}`,{
+          headers: {
+            Authorization: token, 
+            email
+          }
+        });
+        if(response.data.status=="failed"){
+          alert("Invalid User");
+          localStorage.removeItem("token");
+          localStorage.removeItem("user_Id");
+          navigate("/");
+      }else{
+         setIdeas(response.data.StdIdeas);
+      }        
       } catch (error) {
         console.error('Error fetching ideas:', error);
       }

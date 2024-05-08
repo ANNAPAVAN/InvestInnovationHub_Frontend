@@ -30,7 +30,7 @@ const MyLogin = () => {
       const token  = response.data.token;
 
       // const response2 = await axios.get(`${process.env.REACT_APP_BACKEND}/getTokenDetails?token=${token}` );
-      // console.log("myjwt Details(from token) id and role---> ", response2.data);
+      // console.log("myjwt Details(from token) id and role---> ", response2.data); 
 
       if(response.data.status==="notexisted")
       {
@@ -41,6 +41,7 @@ const MyLogin = () => {
       if(response.data.status === 'success') {
         localStorage.setItem("token", response.data.token);
         localStorage.setItem('user_Id', response.data.id);
+        localStorage.setItem("IIH_email",formData.email);
         // alert('Login successful');
         if(response.data.myrole == 'student'){
           navigate('/student');

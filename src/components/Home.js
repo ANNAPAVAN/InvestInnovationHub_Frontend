@@ -39,6 +39,7 @@ function Home() {
     
     
         } catch (error) {
+          console.log(error);
             alert("Session TimeOut Please ReLogin again!!..");
             localStorage.removeItem("token");
             localStorage.removeItem("user_Id");
@@ -174,3 +175,18 @@ function Home() {
 }
 
 export default Home;
+
+
+// Encouraging, Motivating, Providing Opportunities, With Enhanced Resources, and Nurturing Growth.
+
+
+// E - Encouraging
+// M - Motivating
+// P - Providing
+// O - Opportunities
+// W - With
+// E - Enhanced
+// R - Resources
+// I - and
+// N - Nurturing
+// G - Growth

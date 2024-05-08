@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import EntrepreneurNav from '../navPages/EntrepreneurNav';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import StudentResponse from './StudentResponse';
 
 function EntrepreneurProj() {
 
@@ -43,8 +45,8 @@ function EntrepreneurProj() {
               <strong className="student-response-label">Description:</strong> {proj.p_desc}<br />
               {/* <strong className="student-response-label">Status:</strong> {proj.status}<br /> */}
               <strong>Status:</strong><strong className={`student-response-label-status ${proj.status}`}> {proj.status}</strong>
-
-
+              <br></br><br></br>
+              {proj.status=="active"?"":<Link to={`/entrepreneurstudentresponse/${proj.p_id}`} className="nav-link">show responses</Link>}
               <hr className="student-response-divider" />
             </li>
           ))}

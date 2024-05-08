@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import EntrepreneurNav from '../navPages/EntrepreneurNav';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useParams } from 'react-router-dom';
 
 function StudentResponse() {
+
+  const { id } = useParams();
 
   const navigate = useNavigate();
 
@@ -14,7 +16,8 @@ function StudentResponse() {
   useEffect(() => {
     async function fetchIdeas() {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_BACKEND}/getIdeas?entId=${ent_Id}`);
+        // const response = await axios.get(`${process.env.REACT_APP_BACKEND}/getIdeas?entId=${ent_Id}`);
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND}/getIdeas?entId=${ent_Id}&projId=${id}`);
         const filteredIdeas = response.data.ideas.filter(idea => idea.status === 'pending');
         setIdeas(filteredIdeas);
         // setIdeas(response.data.ideas);
@@ -36,6 +39,7 @@ function StudentResponse() {
       {/* <EntrepreneurNav/> */}
       <div className="student-response-container">
         <h1 className="student-response-heading">Ideas from Students</h1>
+        {/* <h1>{id}</h1> */}
         <ul className="student-response-list">
           {ideas.map((idea, index) => (
             <li key={index} className="student-response-item">
@@ -61,3 +65,4 @@ function StudentResponse() {
 }
 
 export default StudentResponse;
+ 

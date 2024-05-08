@@ -12,7 +12,7 @@ function EntrepreneurNav() {
     <nav className="navbar">
 
     <Link to="/entrepreneur" className="nav-link">Home</Link>
-    <Link to="/entrepreneurstudentresponse" className="nav-link">Responses</Link>
+    {/* <Link to="/entrepreneurstudentresponse/:id" className="nav-link">Responses</Link> */}
     <Link to="/entrepreneurprojects" className="nav-link">MyProjects</Link> 
     <Link to="/entrepreneurpost" className="nav-link">Post</Link>
     {/* <Link to="/entrepreneursend" className="nav-link">Send</Link> */}

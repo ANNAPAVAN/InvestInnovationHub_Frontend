@@ -3,12 +3,16 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
+import Protected from './components/Protected';
+import EntProtected from './components/EntProtected';
+import InvProtected from './components/InvProtected';
+
 import Login from './components/MyLogin';
 import MyReg from './components/MyReg';
 
 import Student from './components/Student';
 import Investor from './components/Investor';
-import Protected from './components/Protected';
+
 
 import EntrepreneurHome from './homePages/EntrepreneurHome';
 import InvestorHome from './homePages/InvestorHome';
@@ -65,27 +69,27 @@ function AppContent() {
           <Route path="/allentrepreneurs" element={<AllEntrepreneurs />} />
           <Route path="/allinvestors" element={<AllInvestors />} />
 
-          <Route path="/studentpage" element={<Protected><Student /></Protected>} />
+          <Route path="/studentpage" element={<Student />} />
           <Route path="/student" element={<StudentHome />} />
           <Route path="/studentsend" element={<Protected><StudentSend /></Protected>} />
-          <Route path="/studentideas" element={<Protected><StudentIdeas /></Protected>} />
+          <Route path="/studentideas" element={<StudentIdeas />} />
           <Route path="/studentresult" element={<Protected><Result /></Protected>} />
           <Route path="/studentprofile" element={<Protected><Profile /></Protected>} />
 
-          <Route path="/entrepreneur" element={<Protected><EntrepreneurHome /></Protected>} />
-          <Route path="/entrepreneurprojects" element={<Protected><EntrepreneurProj /></Protected>} />
-          <Route path="/entrepreneurpost" element={<Protected><EntrepreneurPost /></Protected>} />
-          <Route path="/entrepreneursend" element={<Protected><EntrepreneurSend /></Protected>} />
-          <Route path="/entrepreneurstudentresponse" element={<Protected><StudentResponse /></Protected>} />
-          <Route path="/entrepreneurresult" element={<Protected><Result /></Protected>} />
-          <Route path="/entrepreneurprofile" element={<Protected><Profile /></Protected>} />
+          <Route path="/entrepreneur" element={<EntProtected><EntrepreneurHome /></EntProtected>} />
+          <Route path="/entrepreneurprojects" element={<EntProtected><EntrepreneurProj /></EntProtected>} />
+          <Route path="/entrepreneurpost" element={<EntProtected><EntrepreneurPost /></EntProtected>} />
+          <Route path="/entrepreneursend" element={<EntProtected><EntrepreneurSend /></EntProtected>} />
+          <Route path="/entrepreneurstudentresponse/:id" element={<EntProtected><StudentResponse /></EntProtected>} />
+          <Route path="/entrepreneurresult" element={<EntProtected><Result /></EntProtected>} />
+          <Route path="/entrepreneurprofile" element={<EntProtected><Profile /></EntProtected>} />
 
-          <Route path="/investor" element={<Protected><InvestorHome /></Protected>} />
-          <Route path="/investorpage" element={<Protected><Investor /></Protected>} />
-          <Route path="/investorresult" element={<Protected><Result /></Protected>} />
-          <Route path="/investorprofile" element={<Protected><Profile /></Protected>} />
-          <Route path="/investorresultform" element={<Protected><ResultForm /></Protected>} />
-          <Route path="/investorinvests" element={<Protected><InvestorInvests /></Protected>} />
+          <Route path="/investor" element={<InvProtected><InvestorHome /></InvProtected>} />
+          <Route path="/investorpage" element={<InvProtected><Investor /></InvProtected>} />
+          <Route path="/investorresult" element={<InvProtected><Result /></InvProtected>} />
+          <Route path="/investorprofile" element={<InvProtected><Profile /></InvProtected>} />
+          <Route path="/investorresultform" element={<InvProtected><ResultForm /></InvProtected>} />
+          <Route path="/investorinvests" element={<InvProtected><InvestorInvests /></InvProtected>} />
 
 
         </Routes>

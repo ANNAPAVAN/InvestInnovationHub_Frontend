@@ -8,6 +8,9 @@ function StudentSend() {
   const location = useLocation();
   const { post } = location.state;
 
+  const token = localStorage.getItem("token");
+  const email = localStorage.getItem("IIH_email");
+
   const user_Id = localStorage.getItem('user_Id');
 
   useEffect(() => {
@@ -49,11 +52,16 @@ function StudentSend() {
     e.preventDefault();
 
     try {
-      const response = await axios.post(`${process.env.REACT_APP_BACKEND}/studentsend`, formData);
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND}/studentsend`, formData, {
+        headers: {
+          Authorization: token, 
+          email
+        }
+      });
       // console.log(response.data.status);
       alert('Data sent successfully');
     } catch (error) {
-      // console.error('Error while sending data:', error);
+      console.error('Error while sending data:', error);
       alert('Failed to send data');
     }
   };
