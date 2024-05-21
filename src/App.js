@@ -46,6 +46,8 @@ import ResultForm from './components/ResultForm';
 
 import InvestorInvests from './components/InvestorInvests';
 
+import AskAi from './components/AskAi';
+
 
 function App() {
   return (
@@ -68,6 +70,7 @@ function AppContent() {
           <Route path="/allstudents" element={<AllStudents />} />
           <Route path="/allentrepreneurs" element={<AllEntrepreneurs />} />
           <Route path="/allinvestors" element={<AllInvestors />} />
+          <Route path="/askai" element={<AskAi/>}/>
 
           <Route path="/studentpage" element={<Student />} />
           <Route path="/student" element={<StudentHome />} />
@@ -103,7 +106,7 @@ function Navbar() {
   let navbarComponent;
 
   // Determine which navbar to show based on the current route
-  if (location.pathname === '/' || location.pathname === '/login' || location.pathname === '/register' || location.pathname === '/allstudents'|| location.pathname === '/allentrepreneurs'|| location.pathname === '/allinvestors') {
+  if (location.pathname === '/' ||location.pathname === '/askai' || location.pathname === '/login' || location.pathname === '/register' || location.pathname === '/allstudents'|| location.pathname === '/allentrepreneurs'|| location.pathname === '/allinvestors') {
     navbarComponent = <HomeNav />;
   } else if (location.pathname.startsWith('/student')) {
     navbarComponent = <StudentNav />;

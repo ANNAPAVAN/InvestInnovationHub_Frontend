@@ -11,6 +11,7 @@ function HomeNav() {
       <Link to="/allinvestors" className="nav-link">Investors</Link>
       <Link to="/login" className="nav-link">Login</Link>
       <Link to="/register" className="nav-link">Register</Link>
+      <Link to="/askai" className="nav-link">Q/A</Link>
 
 
     </nav>
